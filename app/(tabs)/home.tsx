@@ -27,38 +27,7 @@ export default function HomeScreen() {
 	useEffect(() => {
 		// Load the saved photo URI from the file system (if any)
 		loadSavedPhotoUri();
-		// deleteAllPhotos();
 	}, []);
-
-	const deleteAllPhotos = async () => {
-		try {
-			const photosDirectory = FileSystem.documentDirectory + "photos/";
-
-			// Check if the photos directory exists
-			const dirInfo = await FileSystem.getInfoAsync(photosDirectory);
-			if (!dirInfo.exists) {
-				console.log("Photos directory does not exist.");
-				return;
-			}
-
-			// Read the directory contents
-			const files = await FileSystem.readDirectoryAsync(photosDirectory);
-			if (files.length === 0) {
-				console.log("No photos to delete.");
-				return;
-			}
-
-			// Iterate over each file and delete it
-			for (const file of files) {
-				const fileUri = photosDirectory + file;
-				await FileSystem.deleteAsync(fileUri);
-			}
-
-			console.log("All photos deleted successfully.");
-		} catch (error) {
-			console.error("Error deleting photos:", error);
-		}
-	};
 
 	const loadSavedPhotoUri = async () => {
 		try {
@@ -69,13 +38,32 @@ export default function HomeScreen() {
 
 			if (savedPhotos.length > 0) {
 				const jsonPhotos = [];
-
 				for (const file of savedPhotos) {
 					if (file.endsWith(".json")) {
 						const fileUri = savedPhotosDirectory + file;
 						const fileContent = await FileSystem.readAsStringAsync(fileUri);
 						const json = JSON.parse(fileContent);
 						jsonPhotos.push(json);
+					}
+				}
+
+				// Check for JPEG files without corresponding JSON files
+				for (const file of savedPhotos) {
+					if (file.endsWith(".jpg")) {
+						// Extract the file name without extension
+						const fileNameWithoutExtension = file.slice(0, -4); // Remove the last 4 characters (".jpg")
+
+						// Check if there's no JSON file for this JPEG file
+						if (
+							!jsonPhotos.find((json) =>
+								json.uri.includes(fileNameWithoutExtension)
+							)
+						) {
+							const jpegFileUri = savedPhotosDirectory + file;
+							// Delete the JPEG file
+							await FileSystem.deleteAsync(jpegFileUri, { idempotent: true });
+							console.log(`Deleted JPEG file: ${jpegFileUri}`);
+						}
 					}
 				}
 				// Sort jsonPhotos by createdAt from latest to oldest

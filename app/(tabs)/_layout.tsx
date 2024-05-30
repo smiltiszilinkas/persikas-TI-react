@@ -14,11 +14,11 @@ export default function TabLayout() {
 						title: "Home",
 					}}></Drawer.Screen>
 				<Drawer.Screen
-					name="two"
+					name="about"
 					options={{
 						headerShown: false,
-						drawerLabel: "Two",
-						title: "Two",
+						drawerLabel: "About",
+						title: "About",
 					}}></Drawer.Screen>
 			</Drawer>
 		</GestureHandlerRootView>

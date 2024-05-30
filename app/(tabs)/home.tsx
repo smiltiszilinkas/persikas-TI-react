@@ -16,7 +16,7 @@ import FoodPhoto from "@/components/FoodPhoto";
 
 export default function HomeScreen() {
 	new Date().getDate();
-	const [photos, setPhotos] = useState<any>();
+	const [photos, setPhotos] = useState<any>([]);
 	const [modalVisible, setModalVisible] = useState(false);
 
 	const navigation = useNavigation();
@@ -117,7 +117,9 @@ export default function HomeScreen() {
 
 			<View style={styles.inputContainer}>
 				<Text style={[styles.title, { borderColor: "#E9E7E2" }]}>
-					Have a look at the recipes!
+					{photos.length > 0
+						? "Have a look at the recipes!"
+						: "Click add on the top right corner"}
 				</Text>
 				<ScrollView style={styles.scroller}>
 					{photos &&

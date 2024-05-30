@@ -35,10 +35,10 @@ export default function AddFoodPhoto({ updatePhotos, setModalVisible }: any) {
 	const [selectedSize, setSelectedSize] = useState(undefined);
 	const [photoCaptured, setPhotoCaptured] = useState<boolean>(false);
 	const [savedPhotoUri, setSavedPhotoUri] = useState<string | null>(null);
-	const [protein, setProtein] = useState<string>("");
-	const [carbs, setCarbs] = useState<string>("");
-	const [fats, setFats] = useState<string>("");
-	const [description, setDescription] = useState<string>("");
+	const [protein, setProtein] = useState<string>("1");
+	const [carbs, setCarbs] = useState<string>("1");
+	const [fats, setFats] = useState<string>("1");
+	const [description, setDescription] = useState<string>("Omletas");
 	const [textInputFocused, setTextInputFocused] = useState<boolean>(false);
 
 	useEffect(() => {

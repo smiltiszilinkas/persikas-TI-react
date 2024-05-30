@@ -84,12 +84,10 @@ export default function HomeScreen() {
 					size={48}
 					color="black"
 					onPress={openDrawer}
-					style={{ marginLeft: 20, marginTop: 50 }}
+					style={styles.menuButton}
 				/>
-				<Text style={{ marginTop: 50, fontSize: 32, fontWeight: "bold" }}>
-					Home
-				</Text>
-				<View style={{ marginTop: 50, marginRight: 20 }}>
+				<Text style={styles.homeTitle}>Home</Text>
+				<View style={styles.addPhoto}>
 					<Pressable
 						onPress={() => {
 							setModalVisible(true);
@@ -137,6 +135,19 @@ const styles = StyleSheet.create({
 	container: {
 		backgroundColor: "#E9E7E2",
 		flex: 1,
+	},
+	menuButton: {
+		marginLeft: 20,
+		marginTop: 50,
+	},
+	homeTitle: {
+		marginTop: 50,
+		fontSize: 32,
+		fontWeight: "bold",
+	},
+	addPhoto: {
+		marginTop: 50,
+		marginRight: 20,
 	},
 	title: {
 		fontSize: 30,

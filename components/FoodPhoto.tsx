@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { View, Text, StyleSheet, ImageBackground, Image } from "react-native";
 
 const logoUri = require("../assets/images/persikas-logo.png");
@@ -15,7 +15,7 @@ const FoodPhoto = ({ photoJson }: { photoJson: any }) => {
 				</View>
 				<View style={styles.overlayMacros}>
 					<View style={styles.rowFlex}>
-						<View style={{ marginLeft: 10 }}>
+						<View style={styles.firstMacro}>
 							<Text style={styles.macrosTitles}>Kalorijos</Text>
 							<Text style={styles.macroText}>{photoJson.kcal} kcal</Text>
 						</View>
@@ -71,6 +71,9 @@ const styles = StyleSheet.create({
 		position: "absolute",
 		bottom: 20,
 		left: 20,
+	},
+	firstMacro: {
+		marginLeft: 10,
 	},
 	macrosTitles: {
 		marginRight: 30,

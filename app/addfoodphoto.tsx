@@ -185,13 +185,10 @@ export default function AddFoodPhoto({ updatePhotos, setModalVisible }: any) {
 						<Ionicons name="arrow-back" size={48} color="black" />
 					</TouchableOpacity>
 				</View>
-				<ScrollView style={{ height: Dimensions.get("window").height }}>
+				<ScrollView style={styles.scroller}>
 					{photoCaptured && savedPhotoUri && (
-						<View style={{ flex: 1, alignSelf: "center", marginTop: 20 }}>
-							<Image
-								source={{ uri: savedPhotoUri }}
-								style={{ width: 400, height: 400 }}
-							/>
+						<View style={styles.mainScroll}>
+							<Image source={{ uri: savedPhotoUri }} style={styles.image} />
 							<View style={styles.retakeContainer}>
 								<TouchableOpacity
 									style={styles.retakeButton}
@@ -239,13 +236,7 @@ export default function AddFoodPhoto({ updatePhotos, setModalVisible }: any) {
 					)}
 				</ScrollView>
 				{!textInputFocused && (
-					<View
-						style={{
-							position: "absolute",
-							bottom: 30,
-							width: Dimensions.get("window").width - 100,
-							alignSelf: "center",
-						}}>
+					<View style={styles.addPhotoButton}>
 						<CustomButton
 							title="Add Photo"
 							color="#ff8341"
@@ -263,6 +254,15 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		justifyContent: "center",
+	},
+	mainScroll: {
+		flex: 1,
+		alignSelf: "center",
+		marginTop: 20,
+	},
+	image: {
+		width: 400,
+		height: 400,
 	},
 	camera: {
 		flex: 1,
@@ -306,10 +306,15 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 	},
 	scroller: {
-		width: Dimensions.get("window").width - 50,
-		height: Dimensions.get("window").height - 200,
+		height: Dimensions.get("window").height,
 	},
 	backArrow: {
 		marginLeft: 10,
+	},
+	addPhotoButton: {
+		position: "absolute",
+		bottom: 30,
+		width: Dimensions.get("window").width - 100,
+		alignSelf: "center",
 	},
 });

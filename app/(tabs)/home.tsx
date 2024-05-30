@@ -86,6 +86,9 @@ export default function HomeScreen() {
 					onPress={openDrawer}
 					style={{ marginLeft: 20, marginTop: 50 }}
 				/>
+				<Text style={{ marginTop: 50, fontSize: 32, fontWeight: "bold" }}>
+					Home
+				</Text>
 				<View style={{ marginTop: 50, marginRight: 20 }}>
 					<Pressable
 						onPress={() => {
